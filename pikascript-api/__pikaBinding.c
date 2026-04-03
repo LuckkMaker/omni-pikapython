@@ -26,7 +26,6 @@
 #include "PikaStdLib_SysObj.h"
 #include "Math.h"
 #include "PikaStdLib.h"
-#include "_time.h"
 #include "PikaStdData.h"
 #include "TinyObj.h"
 #include "PikaStdData_ByteArray.h"
@@ -62,10 +61,6 @@
 #include "PikaStdTask_Task.h"
 #include "PikaStdLib_SysObj.h"
 #include "PikaStdData_List.h"
-#include "_time.h"
-#include "TinyObj.h"
-#include "_time_struct_time.h"
-#include "TinyObj.h"
 
 #ifndef PIKA_MODULE_MATH_DISABLE
 void Math_AdderMethod(PikaObj *self, Args *args){
@@ -250,7 +245,6 @@ PikaObj *New_PikaMain(Args *args){
     PikaObj *self = New_PikaStdLib_SysObj(args);
     obj_newObj(self, "Math", "Math", New_Math);
     obj_newObj(self, "PikaStdLib", "PikaStdLib", New_PikaStdLib);
-    obj_newObj(self, "_time", "_time", New__time);
     obj_setClass(self, PikaMain);
     return self;
 }
@@ -2049,224 +2043,6 @@ PikaObj *New_PikaStdTask_Task(Args *args){
 
 Arg *PikaStdTask_Task(PikaObj *self){
     return obj_newObjInPackage(New_PikaStdTask_Task);
-}
-#endif
-
-#ifndef PIKA_MODULE__TIME_DISABLE
-void _time___init__Method(PikaObj *self, Args *args){
-    _time___init__(self);
-}
-method_typedef(
-    _time___init__,
-    "__init__", ""
-);
-
-void _time_asctimeMethod(PikaObj *self, Args *args){
-    char* res = _time_asctime(self);
-    method_returnStr(args, res);
-}
-method_typedef(
-    _time_asctime,
-    "asctime", ""
-);
-
-void _time_ctimeMethod(PikaObj *self, Args *args){
-    pika_float unix_time = args_getFloat(args, "unix_time");
-    char* res = _time_ctime(self, unix_time);
-    method_returnStr(args, res);
-}
-method_typedef(
-    _time_ctime,
-    "ctime", "unix_time"
-);
-
-void _time_gmtimeMethod(PikaObj *self, Args *args){
-    pika_float unix_time = args_getFloat(args, "unix_time");
-    _time_gmtime(self, unix_time);
-}
-method_typedef(
-    _time_gmtime,
-    "gmtime", "unix_time"
-);
-
-void _time_localtimeMethod(PikaObj *self, Args *args){
-    pika_float unix_time = args_getFloat(args, "unix_time");
-    PikaObj* res = _time_localtime(self, unix_time);
-    method_returnObj(args, res);
-}
-method_typedef(
-    _time_localtime,
-    "localtime", "unix_time"
-);
-
-void _time_mktimeMethod(PikaObj *self, Args *args){
-    PikaObj* tm = args_getPtr(args, "tm");
-    int res = _time_mktime(self, tm);
-    method_returnInt(args, res);
-}
-method_typedef(
-    _time_mktime,
-    "mktime", "tm"
-);
-
-void _time_platformGetTickMethod(PikaObj *self, Args *args){
-    _time_platformGetTick(self);
-}
-method_typedef(
-    _time_platformGetTick,
-    "platformGetTick", ""
-);
-
-void _time_sleep_msMethod(PikaObj *self, Args *args){
-    int ms = args_getInt(args, "ms");
-    _time_sleep_ms(self, ms);
-}
-method_typedef(
-    _time_sleep_ms,
-    "sleep_ms", "ms"
-);
-
-void _time_sleep_sMethod(PikaObj *self, Args *args){
-    int s = args_getInt(args, "s");
-    _time_sleep_s(self, s);
-}
-method_typedef(
-    _time_sleep_s,
-    "sleep_s", "s"
-);
-
-void _time_struct_timeMethod(PikaObj *self, Args *args){
-    Arg* res = _time_struct_time(self);
-    method_returnArg(args, res);
-}
-method_typedef(
-    _time_struct_time,
-    "struct_time", ""
-);
-
-void _time_timeMethod(PikaObj *self, Args *args){
-    pika_float res = _time_time(self);
-    method_returnFloat(args, res);
-}
-method_typedef(
-    _time_time,
-    "time", ""
-);
-
-void _time_time_nsMethod(PikaObj *self, Args *args){
-    int res = _time_time_ns(self);
-    method_returnInt(args, res);
-}
-method_typedef(
-    _time_time_ns,
-    "time_ns", ""
-);
-
-class_def(_time){
-    __BEFORE_MOETHOD_DEF
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_gmtime, 1586568),
-#endif
-    method_def(_time_sleep_ms, 164842493),
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_mktime, 234027084),
-#endif
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_ctime, 255845143),
-#endif
-    method_def(_time_sleep_s, 460522064),
-    method_def(_time___init__, 904762485),
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_localtime, 907356095),
-#endif
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_asctime, 1108526539),
-#endif
-    constructor_def(_time_struct_time, 1554906328),
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_time_ns, 1644053204),
-#endif
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_platformGetTick, 1897947957),
-#endif
-#if PIKA_STD_DEVICE_UNIX_TIME_ENABLE
-    method_def(_time_time, 2090760340),
-#endif
-};
-class_inhert(_time, TinyObj);
-
-PikaObj *New__time(Args *args){
-    PikaObj *self = New_TinyObj(args);
-    obj_setClass(self, _time);
-    return self;
-}
-#endif
-
-#ifndef PIKA_MODULE__TIME_DISABLE
-void _time_struct_time___getitem__Method(PikaObj *self, Args *args){
-    int __key = args_getInt(args, "__key");
-    int res = _time_struct_time___getitem__(self, __key);
-    method_returnInt(args, res);
-}
-method_typedef(
-    _time_struct_time___getitem__,
-    "__getitem__", "__key"
-);
-
-void _time_struct_time___iter__Method(PikaObj *self, Args *args){
-    Arg* res = _time_struct_time___iter__(self);
-    method_returnArg(args, res);
-}
-method_typedef(
-    _time_struct_time___iter__,
-    "__iter__", ""
-);
-
-void _time_struct_time___len__Method(PikaObj *self, Args *args){
-    int res = _time_struct_time___len__(self);
-    method_returnInt(args, res);
-}
-method_typedef(
-    _time_struct_time___len__,
-    "__len__", ""
-);
-
-void _time_struct_time___next__Method(PikaObj *self, Args *args){
-    Arg* res = _time_struct_time___next__(self);
-    method_returnArg(args, res);
-}
-method_typedef(
-    _time_struct_time___next__,
-    "__next__", ""
-);
-
-void _time_struct_time___str__Method(PikaObj *self, Args *args){
-    char* res = _time_struct_time___str__(self);
-    method_returnStr(args, res);
-}
-method_typedef(
-    _time_struct_time___str__,
-    "__str__", ""
-);
-
-class_def(_time_struct_time){
-    __BEFORE_MOETHOD_DEF
-    method_def(_time_struct_time___iter__, 911732085),
-    method_def(_time_struct_time___next__, 1090305216),
-    method_def(_time_struct_time___getitem__, 1535436016),
-    method_def(_time_struct_time___len__, 2047989248),
-    method_def(_time_struct_time___str__, 2056834106),
-};
-class_inhert(_time_struct_time, TinyObj);
-
-PikaObj *New__time_struct_time(Args *args){
-    PikaObj *self = New_TinyObj(args);
-    obj_setClass(self, _time_struct_time);
-    return self;
-}
-
-Arg *_time_struct_time(PikaObj *self){
-    return obj_newObjInPackage(New__time_struct_time);
 }
 #endif
 

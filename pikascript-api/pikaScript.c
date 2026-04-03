@@ -18,7 +18,6 @@ PikaObj *pikaScriptInit(void){
     __platform_printf("======[pikascript packages installed]======\r\n");
     pks_printVersion();
     __platform_printf("PikaStdLib==v1.12.0\r\n");
-    __platform_printf("time==v0.2.2\r\n");
     __platform_printf("===========================================\r\n");
     PikaObj* pikaMain = newRootObj("pikaMain", New_PikaMain);
     __pikaMain = pikaMain;
@@ -29,7 +28,7 @@ PikaObj *pikaScriptInit(void){
             "import PikaStdLib\n"
             "import sample\n"
             "import Math\n"
-            "import time\n"
+            "print('start pikapython')\n"
             "print('hello pikapython!')\n"
             "mem = PikaStdLib.MemChecker()\n"
             "print('mem used max:')\n"

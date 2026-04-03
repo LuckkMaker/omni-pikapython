@@ -1,8 +1,8 @@
 import PikaStdLib
 import sample
 import Math
-import time
 
+print('start pikapython')
 print('hello pikapython!')
 mem = PikaStdLib.MemChecker()
 print('mem used max:')
