@@ -1,0 +1,55 @@
+layer:
+  # A layer is a collection of pre-configured source files or components
+  type: PikaScript
+  description: PikaScript layer
+
+  add-path:
+    - ./pikascript-core
+    - ./pikascript-api
+    - ./pikascript-lib/PikaStdLib
+    - ./pikascript-lib/Math
+
+  groups:
+    - group: core
+      files:
+        - file: ./pikascript-core/BaseObj.c
+        - file: ./pikascript-core/dataArg.c
+        - file: ./pikascript-core/dataArgs.c
+        - file: ./pikascript-core/dataLink.c
+        - file: ./pikascript-core/dataLinkNode.c
+        - file: ./pikascript-core/dataMemory.c
+        - file: ./pikascript-core/dataQueue.c
+        - file: ./pikascript-core/dataQueueObj.c
+        - file: ./pikascript-core/dataStack.c
+        - file: ./pikascript-core/dataString.c
+        - file: ./pikascript-core/dataStrs.c
+        - file: ./pikascript-core/PikaCompiler.c
+        - file: ./pikascript-core/PikaObj.c
+        - file: ./pikascript-core/PikaParser.c
+        - file: ./pikascript-core/PikaPlatform.c
+        - file: ./pikascript-core/PikaVM.c
+        - file: ./pikascript-core/TinyObj.c
+    - group: api
+      files:
+        - file: ./pikascript-api/__asset_pikaModules_py_a.c
+        - file: ./pikascript-api/__pikaBinding.c
+        - file: ./pikascript-api/pikaScript.c
+    - group: lib/pikaStdLib
+      files:
+        - file: ./pikascript-lib/PikaStdLib/PikaDebuger_Debuger.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_ByteArray.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_Dict.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_FILEIO.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_List.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_String.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_Tuple.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdData_Utils.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdLib_MemChecker.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdLib_RangeObj.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdLib_StringObj.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdLib_SysObj.c
+        - file: ./pikascript-lib/PikaStdLib/PikaStdTask_Task.c
+    - group: lib/Math
+      files:
+        - file: ./pikascript-lib/Math/Math_Adder.c
+        - file: ./pikascript-lib/Math/Math_Multiplier.c
